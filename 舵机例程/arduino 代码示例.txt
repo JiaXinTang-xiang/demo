@@ -1,0 +1,29 @@
+// 引入 Servo 库
+#include <Servo.h>
+
+// 创建一个 Servo 对象
+Servo myservo;
+
+void setup() {
+  // 把舵机连接到 pin 9
+  myservo.attach(9);
+}
+
+void loop() {
+  // 把舵机向右转
+  myservo.write(90);
+  delay(1000); //延时 1 秒
+
+  // 把舵机向左转
+  myservo.write(0);
+  delay(1000); //延时 1 秒
+}
+```
+
+在这个示例代码中：
+- 引入了Servo库，用于控制舵机；
+- 创建了一个Servo对象myservo；
+- 在setup函数中，将舵机连接到pin9；
+- 在loop函数中，通过myservo.write函数将舵机转动到指定角度，并通过delay函数控制每次转动的时间间隔。
+
+您可以根据自己的需要修改代码中的角度值和延时时间。当您上传并执行代码时，舵机会根据您设定的角度来转动。

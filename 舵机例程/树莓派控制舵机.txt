@@ -1,0 +1,35 @@
+以下是一个使用树莓派控制舵机的Python程序示例：
+
+```python
+import RPi.GPIO as GPIO
+import time
+ 
+# 设置引脚编号
+servo_pin = 18
+ 
+# 初始化 GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(servo_pin, GPIO.OUT)
+ 
+# 创建 PWM 对象
+pwm = GPIO.PWM(servo_pin, 50)
+pwm.start(0)
+ 
+try:
+    # 使用占空比控制舵机
+    while True:
+        # 舵机转动到 0 度
+        pwm.ChangeDutyCycle(2.5)
+        time.sleep(1)
+        # 舵机转动到 90 度
+        pwm.ChangeDutyCycle(7.5)
+        time.sleep(1)
+        # 舵机转动到 180 度
+        pwm.ChangeDutyCycle(12.5)
+        time.sleep(1)
+except KeyboardInterrupt:
+    # 中断程序时清理 GPIO
+    pwm.stop()
+    GPIO.cleanup()
+```
+该程序使用 RPi.GPIO 库控制 GPIO 引脚，创建 PWM 对象并使用占空比来控制舵机的转动角度。其中，舵机的角度对应的占空比可以根据舵机的型号和规格进行调整。示例中通过 while 循环不断依次转动舵机到 0 度、90 度和 180 度，每次转动后等待 1 秒钟，按下 Ctrl+C 键中断程序时清理 GPIO 引脚。
